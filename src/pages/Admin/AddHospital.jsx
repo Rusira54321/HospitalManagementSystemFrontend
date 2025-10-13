@@ -15,9 +15,9 @@ const AddHospital = () => {
       hospitalName,
       hospitalLocation,
       hospitalType
-    }, {
-      withCredentials: true
-    }).then((res) => {
+    },  {
+    withCredentials: true
+}).then((res) => {
       setSuccess("Hospital added successfully");
       setError("");
       setHospitalLocation("")

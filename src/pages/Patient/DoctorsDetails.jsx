@@ -37,6 +37,7 @@ const DoctorsDetails = () => {
           axios.get(DoctorsDetailsUrl, { withCredentials: true }),
           axios.get(getHospitalsUrl, { withCredentials: true })
         ]);
+        console.log(doctorsRes.data)
         setDoctors(doctorsRes.data);
         setHospitals(hospitalsRes.data);
       } catch (err) {

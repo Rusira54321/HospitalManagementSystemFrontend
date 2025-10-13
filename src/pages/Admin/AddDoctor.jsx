@@ -62,9 +62,9 @@ const AddDoctor = () => {
       password,
       email
     },{
-      params:{
-        hospitalId
-      },
+      params: {
+      hospitalId
+    },
       withCredentials:true
     }).then((res)=>{
       setError("")
@@ -79,7 +79,7 @@ const AddDoctor = () => {
     }).catch((error)=>{
       setSuccess("")
       console.log(error)
-      setError("Registration failed")
+      setError(error.response.data)
     })
   }
 
