@@ -11,6 +11,8 @@ import Patient from './pages/Patient/Patient'
 import AddDoctor from './pages/Admin/AddDoctor'
 import AddHospitalStaff from './pages/Admin/AddHospitalStaff'
 import AddHospital from './pages/Admin/AddHospital'
+import Layout from './pages/Patient/Layout'
+import DoctorsDetails from './pages/Patient/DoctorsDetails'
 const App = () => {
   return (
     <div>
@@ -22,7 +24,10 @@ const App = () => {
             <Route path='/DoctorDashboard' element={<DoctorDashboard/>}/>
             <Route path='/HealthCareManagerDashboard' element={<HealthCareManager/>}/>
             <Route path='/HospitalStaffDashboard' element={<HospitalStaff/>}/>
-            <Route path='/PatientDashboard' element={<Patient/>}/>
+            <Route path='/patient' element={<Layout/>}>
+                <Route path='dashboard' element={<Patient/>}></Route>
+                <Route path='doctorDetails' element={<DoctorsDetails/>}/>
+            </Route>
             <Route path='/addDoctor' element={<AddDoctor/>}/>
             <Route path='/addHospitalStaff' element={<AddHospitalStaff/>}/>
             <Route path='/addHospital' element={<AddHospital/>}/>

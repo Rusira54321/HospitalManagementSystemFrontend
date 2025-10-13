@@ -43,6 +43,8 @@ const Register = () => {
   const handleSubmit = async(e) =>{
     e.preventDefault();
     const passwordError = validatePassword(password)
+    setErrorMessage("")
+    setSuccessMessage("")
     if(passwordError!=="") { setError(passwordError); return }
     setError("")
     const usernameerror = validateUsername(username)
@@ -67,7 +69,7 @@ const Register = () => {
         setSuccessMessage("Registration successful! You can now log in.");
         setErrorMessage("")
     }).catch(err=>{
-        setErrorMessage(err.response?.data?.error || "Registration failed")
+        setErrorMessage(err.response?.data|| "Registration failed")
         setSuccessMessage("")
     });
   }

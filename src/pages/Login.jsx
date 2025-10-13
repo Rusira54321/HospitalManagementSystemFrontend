@@ -34,7 +34,7 @@ const Login = () => {
                 navigate('/AdminDashboard')
         }else if(javascriptObject.roles.includes("ROLE_PATIENT"))
         {
-                navigate('/PatientDashboard')
+                navigate('/patient/dashboard')
         }
         else if(javascriptObject.roles.includes("ROLE_HEALTHCAREMANAGER"))
         {
