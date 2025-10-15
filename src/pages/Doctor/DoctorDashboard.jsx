@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const DoctorDashboard = () => {
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-300 to-blue-500 flex flex-col items-center justify-center px-4 py-8">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-2xl">
@@ -21,12 +23,16 @@ const DoctorDashboard = () => {
             </svg>
             <span className="font-semibold text-blue-700">View Patients</span>
           </div>
+          <Link to={'/Doctor/addAppoinment'}>
           <div className="flex flex-col items-center bg-blue-100 rounded-xl p-6 shadow hover:bg-blue-200 transition cursor-pointer">
             <svg className="w-8 h-8 text-blue-600 mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m7-7v14" />
             </svg>
-            <span className="font-semibold text-blue-700">Add Prescription</span>
+            
+            <span className="font-semibold text-blue-700">Add Appoinment</span>
+            
           </div>
+          </Link>
         </div>
       </div>
     </div>

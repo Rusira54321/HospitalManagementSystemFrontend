@@ -13,6 +13,12 @@ import AddHospitalStaff from './pages/Admin/AddHospitalStaff'
 import AddHospital from './pages/Admin/AddHospital'
 import Layout from './pages/Patient/Layout'
 import DoctorsDetails from './pages/Patient/DoctorsDetails'
+import DoctorLayout from './pages/Doctor/DoctorLayout'
+import DoctorAppoinment from './pages/Doctor/DoctorAppoinment'
+import AddAppoinments from './pages/Doctor/AddAppoinments'
+import DoctorAppointments from './pages/Patient/DoctorAppointments'
+import PatientAppointments from './pages/Patient/PatientAppointments'
+import DoctorPatients from './pages/Doctor/DoctorPatients'
 const App = () => {
   return (
     <div>
@@ -21,12 +27,19 @@ const App = () => {
             <Route path='/' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
-            <Route path='/DoctorDashboard' element={<DoctorDashboard/>}/>
             <Route path='/HealthCareManagerDashboard' element={<HealthCareManager/>}/>
             <Route path='/HospitalStaffDashboard' element={<HospitalStaff/>}/>
             <Route path='/patient' element={<Layout/>}>
                 <Route path='dashboard' element={<Patient/>}></Route>
                 <Route path='doctorDetails' element={<DoctorsDetails/>}/>
+                <Route path='appointment/:doctorID' element={<DoctorAppointments/>}/>
+                <Route path='patientAppointments' element={<PatientAppointments/>}/>
+            </Route>
+            <Route path='/Doctor' element={<DoctorLayout/>}>
+                <Route path='DoctorDashboard' element={<DoctorDashboard/>}></Route>
+                <Route path='Appoinments' element={<DoctorAppoinment/>}></Route>
+                <Route path='addAppoinment' element={<AddAppoinments/>}></Route>
+                <Route path='BookedAppointments' element={<DoctorPatients/>}/>
             </Route>
             <Route path='/addDoctor' element={<AddDoctor/>}/>
             <Route path='/addHospitalStaff' element={<AddHospitalStaff/>}/>

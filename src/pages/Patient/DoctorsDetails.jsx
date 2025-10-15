@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
+import { Link } from "react-router-dom";
 
 const DoctorsDetails = () => {
   const [doctors, setDoctors] = useState([]);
@@ -142,7 +143,7 @@ const DoctorsDetails = () => {
               <div className="col-span-full text-center text-white text-xl">No doctors found</div>
             ) : (
               currentDoctors.map((doctor) => (
-                <div key={doctor.id} className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition flex flex-col items-center">
+                <Link to={`/patient/appointment/${doctor.doctorId}`} key={doctor.doctorId} className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition flex flex-col items-center">
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
                     alt="Doctor Icon"
@@ -155,7 +156,7 @@ const DoctorsDetails = () => {
                   <p className="text-gray-700 text-center"><span className="font-medium text-black">Hospital:</span> {doctor.hospital?.hospitalName}</p>
                   <p className="text-gray-700 text-center"><span className="font-medium text-black">Type:</span> {doctor.hospital?.hospitalType}</p>
                   <p className="text-gray-700 text-center"><span className="font-medium text-black">Location:</span> {doctor.hospital?.hospitalLocation}</p>
-                </div>
+                </Link>
               ))
             )}
           </div>

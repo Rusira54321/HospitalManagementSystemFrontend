@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { 
-  FaTachometerAlt, // Dashboard
-  FaNotesMedical,  // Health Records
-  FaCalendarCheck, // Appointments
-  FaMoneyCheckAlt, // Payments
-  FaUserCircle     // Profile
+import {
+  FaTachometerAlt,   // Dashboard
+  FaUserInjured,     // Patients
+  FaCalendarCheck,   // Appointments
+  FaPrescription,    // Prescriptions
+  FaMoneyCheckAlt,   // Payments
+  FaUserMd           // Profile
 } from "react-icons/fa";
 
-const Sidebar = () => {
+const DoctorSidebar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
 
   const menuItems = [
-    { name: "Dashboard", icon: FaTachometerAlt, path: "/patient/dashboard" },
-    { name: "My Health Records", icon: FaNotesMedical, path: "/patient/records" },
-    { name: "Appointments", icon: FaCalendarCheck, path: "/patient/patientAppointments" },
-    { name: "Payments", icon: FaMoneyCheckAlt, path: "/patient/payments" },
+    { name: "Dashboard", icon: FaTachometerAlt, path: "/Doctor/DoctorDashboard" },
+    { name: "My Patients", icon: FaUserInjured, path: "/Doctor/BookedAppointments" },
+    { name: "Appointments", icon: FaCalendarCheck, path: "/Doctor/Appoinments" },
+    { name: "Prescriptions", icon: FaPrescription, path: "/doctor/prescriptions" },
+    { name: "Payments", icon: FaMoneyCheckAlt, path: "/doctor/payments" },
   ];
-
-
 
   return (
     <div className="flex flex-col min-h-screen bg-white shadow-lg w-64">
       {/* Logo / Header */}
       <div className="flex flex-col items-center justify-center h-28 border-b border-gray-200 px-4">
-        <h1 className="text-xl font-bold text-blue-600 mb-1">Patient Portal</h1>
-        <p className="text-gray-600 text-sm">Welcome, User!</p>
+        <h1 className="text-xl font-bold text-blue-600 mb-1">Doctor Portal</h1>
+        <p className="text-gray-600 text-sm">Welcome, Dr. John!</p>
       </div>
 
       {/* Menu */}
@@ -39,7 +39,9 @@ const Sidebar = () => {
               key={index}
               to={item.path}
               className={`flex items-center px-4 py-3 rounded-lg mb-2 transition-all hover:bg-blue-100 ${
-                isActive ? "bg-blue-100 font-semibold text-blue-600" : "text-gray-700"
+                isActive
+                  ? "bg-blue-100 font-semibold text-blue-600"
+                  : "text-gray-700"
               }`}
             >
               <Icon className="w-5 h-5 mr-3" />
@@ -55,7 +57,7 @@ const Sidebar = () => {
           onClick={() => alert("Profile settings clicked!")}
           className="flex items-center w-full px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition"
         >
-          <FaUserCircle className="w-5 h-5 mr-2" />
+          <FaUserMd className="w-5 h-5 mr-2" />
           Profile
         </button>
       </div>
@@ -63,4 +65,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default DoctorSidebar;

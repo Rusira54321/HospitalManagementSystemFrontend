@@ -26,9 +26,10 @@ const Login = () => {
         setsuccess("Login successful!")
         const jsonString = fixInvalidJson(response.data)
         const javascriptObject = JSON.parse(jsonString)
+        localStorage.setItem("username",javascriptObject.username)
         if(javascriptObject.roles.includes("ROLE_DOCTOR"))
         {
-                navigate('/DoctorDashboard')
+                navigate('/Doctor/DoctorDashboard')
         }else if(javascriptObject.roles.includes("ROLE_ADMIN"))
         {
                 navigate('/AdminDashboard')
