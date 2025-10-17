@@ -10,13 +10,14 @@ export default function HospitalStaffDashboard() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+
         {/* Doctor Appointments Button */}
-        <div className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-blue-600 text-center">
-          <h2 className="text-xl font-semibold text-blue-700">Doctor </h2>
+        <Link to="/HospitalStaffDashboard/AppointmentForm" className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-blue-600 text-center">
+          <h2 className="text-xl font-semibold text-blue-700">Doctor Appointment</h2>
           <p className="text-gray-600 mt-2">
             View and manage upcoming appointments
           </p>
-        </div>
+        </Link>
 
         {/* Patient Search Button */}
         <Link to="/HospitalStaffDashboard/PatientSearch" className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-red-600 text-center block">
@@ -42,12 +43,12 @@ export default function HospitalStaffDashboard() {
         </div>
 
         {/* Reports & Analytics */}
-        <div className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-blue-600 text-center">
+        <Link to="/HospitalStaffDashboard/ReportTypes" className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-blue-600 text-center">
           <h2 className="text-xl font-semibold text-blue-700">Reports & Analytics</h2>
           <p className="text-gray-600 mt-2">
             View and analyze hospital performance metrics
           </p>
-        </div>
+        </Link>
 
         {/* Profile & Settings */}
         <div className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-green-600 text-center">
@@ -72,6 +73,14 @@ export default function HospitalStaffDashboard() {
             Manage medications and prescriptions
           </p>
         </div>
+
+        {/* Reports & Analytics */}
+        <Link to="/HospitalStaffDashboard/ReportTypes" className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border-t-4 border-blue-600 text-center">
+          <h2 className="text-xl font-semibold text-blue-700">Hospital</h2>
+          <p className="text-gray-600 mt-2">
+            View and analyze hospital performance metrics
+          </p>
+        </Link>
 
       </div>
     </div>

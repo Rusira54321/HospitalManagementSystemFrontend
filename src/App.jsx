@@ -7,15 +7,19 @@ import AdminDashboard from './pages/Admin/AdminDashboard'
 import DoctorDashboard from './pages/Doctor/DoctorDashboard'
 import HealthCareManager from './pages/HealthCareManager/HealthCareManager'
 import Patient from './pages/Patient/Patient'
-import AddDoctor from './pages/Admin/AddDoctor'
+//import AddDoctor from './pages/Admin/AddDoctor'
 import AddHospitalStaff from './pages/Admin/AddHospitalStaff'
 import AddHospital from './pages/Admin/AddHospital'
-import Layout from './pages/Patient/Layout'
+//import Layout from './pages/Patient/Layout'
 import DoctorsDetails from './pages/Patient/DoctorsDetails'
 import HospitalStaffDashboard from './pages/HospitalStaff/HospitalStaffDashboard'
 import PatientForm from './pages/HospitalStaff/PatientForm'
 import PatientSearch from './pages/HospitalStaff/PatientSearch'
 import PatientDetails from './pages/HospitalStaff/PatientDetails'
+
+import ReportTypes from './pages/HealthCareManager/ReportTypes'
+import ReportGenerate from './pages/HealthCareManager/ReportGenerate'
+import AppointmentForm from './pages/Appoinment/AppointmentForm'
 const App = () => {
   return (
     <div>
@@ -32,11 +36,12 @@ const App = () => {
             <Route path='/HospitalStaffDashboard/PatientDetails/:patientId' element={<PatientDetails />} /> // PATIENT DETAILS         
             <Route path='/HospitalStaffDashboard/PatientForm' element={<PatientForm />} /> // PATIENT REGISTRATION FORM
             
-            <Route path='/patient' element={<Layout/>}>
-                <Route path='dashboard' element={<Patient/>}></Route>
-                <Route path='doctorDetails' element={<DoctorsDetails/>}/>
-            </Route>
-            <Route path='/addDoctor' element={<AddDoctor/>}/>
+            <Route path='/HospitalStaffDashboard/ReportTypes' element={<ReportTypes />} /> // REPORT TYPES DASHBOARD
+            <Route path='/ReportTypes/ReportGenerate' element={<ReportGenerate />} /> // REPORT GENERATE
+            <Route path='/HospitalStaffDashboard/ReportGenerate/:hospitalId' element={<ReportGenerate />} /> // REPORT GENERATE
+            <Route path='/HospitalStaffDashboard/AppointmentForm' element={<AppointmentForm />} /> // APPOINTMENT FORM
+
+           
             <Route path='/addHospitalStaff' element={<AddHospitalStaff/>}/>
             <Route path='/addHospital' element={<AddHospital/>}/>
 
