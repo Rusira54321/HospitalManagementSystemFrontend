@@ -11,53 +11,54 @@ const statusColors = {
 const DoctorAppointment = () => {
   const [appointments, setAppointments] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchDate, setSearchDate] = useState(""); // ✅ New date search state
+  const [searchDate, setSearchDate] = useState(""); // ✅ Date search
   const [currentPage, setCurrentPage] = useState(1);
   const [appointmentsPerPage] = useState(5);
 
   useEffect(() => {
-  const username = localStorage.getItem("username");
+    const username = localStorage.getItem("username");
 
-  const getAllAppointments = async () => {
-    try {
-      const res = await axios.get("http://localhost:9090/api/doctor/getDoctor", {
-        params: { username },
-        withCredentials: true,
-      });
-
-      const doctorId = res.data.id;
-
-      const appointmentsRes = await axios.get(
-        "http://localhost:9090/api/doctor/getAppointments",
-        {
-          params: { doctorId },
+    const getAllAppointments = async () => {
+      try {
+        const res = await axios.get("http://localhost:9090/api/doctor/getDoctor", {
+          params: { username },
           withCredentials: true,
-        }
-      );
+        });
 
-      // ✅ Sort by createTime (latest first)
-      const sortedAppointments = appointmentsRes.data.sort(
-        (a, b) => new Date(b.createTime) - new Date(a.createTime)
-      );
+        const doctorId = res.data.id;
 
-      
-      setAppointments(sortedAppointments);
-    } catch (err) {
-      console.error("Error fetching appointments:", err);
-    }
-  };
+        const appointmentsRes = await axios.get(
+          "http://localhost:9090/api/doctor/getAppointments",
+          {
+            params: { doctorId },
+            withCredentials: true,
+          }
+        );
 
-  getAllAppointments();
-}, []);
+        // ✅ Sort by createTime (latest first)
+        const sortedAppointments = appointmentsRes.data.sort(
+          (a, b) => new Date(b.createTime) - new Date(a.createTime)
+        );
 
-  // ✅ Filter appointments by search term and date
+        setAppointments(sortedAppointments);
+      } catch (err) {
+        console.error("Error fetching appointments:", err);
+      }
+    };
+
+    getAllAppointments();
+  }, []);
+
+  // ✅ Filter appointments by search term and local start date
   const filteredAppointments = appointments.filter((appt) => {
     const patientName = appt.patient
       ? `${appt.patient.firstName} ${appt.patient.lastName}`.toLowerCase()
       : "";
     const status = appt.status?.toLowerCase() || "";
     const room = appt.roomLocation?.toLowerCase() || "";
-    const appointmentDate = new Date(appt.startTime).toISOString().split("T")[0];
+
+    // ✅ Use local date (avoids timezone issues)
+    const appointmentDate = new Date(appt.startTime).toLocaleDateString("en-CA");
 
     const matchesText =
       patientName.includes(search.toLowerCase()) ||
@@ -131,8 +132,9 @@ const DoctorAppointment = () => {
           >
             <div className="flex justify-between items-center">
               <span
-                className={`px-3 py-1 rounded-full text-sm font-semibold ${statusColors[appointment.status]
-                  }`}
+                className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                  statusColors[appointment.status]
+                }`}
               >
                 {appointment.status}
               </span>
@@ -191,10 +193,11 @@ const DoctorAppointment = () => {
             <button
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              className={`px-3 py-1 rounded-lg ${currentPage === i + 1
-                ? "bg-blue-500 text-white"
-                : "bg-white text-gray-700 shadow"
-                }`}
+              className={`px-3 py-1 rounded-lg ${
+                currentPage === i + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-white text-gray-700 shadow"
+              }`}
             >
               {i + 1}
             </button>

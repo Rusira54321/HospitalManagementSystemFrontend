@@ -19,6 +19,15 @@ import AddAppoinments from './pages/Doctor/AddAppoinments'
 import DoctorAppointments from './pages/Patient/DoctorAppointments'
 import PatientAppointments from './pages/Patient/PatientAppointments'
 import DoctorPatients from './pages/Doctor/DoctorPatients'
+import SuccessfulPayment from './pages/Patient/SuccessfullPayment'
+import AdminLayout from './pages/Admin/AdminLayout'
+import AddUsers from './pages/Admin/AddUsers'
+import AllHospitals from './pages/Admin/AllHospitals'
+import AllUsers from './pages/Admin/AllUsers'
+import AllPatients from './pages/Admin/AllPatients'
+import AllDoctors from './pages/Admin/AllDoctors'
+import AllHospitalStafs from './pages/Admin/AllHospitalStafs'
+import AllHealthCareManagers from './pages/Admin/AllHealthCareManagers'
 const App = () => {
   return (
     <div>
@@ -34,6 +43,7 @@ const App = () => {
                 <Route path='doctorDetails' element={<DoctorsDetails/>}/>
                 <Route path='appointment/:doctorID' element={<DoctorAppointments/>}/>
                 <Route path='patientAppointments' element={<PatientAppointments/>}/>
+                <Route path='successfulPayment' element={<SuccessfulPayment/>}/>
             </Route>
             <Route path='/Doctor' element={<DoctorLayout/>}>
                 <Route path='DoctorDashboard' element={<DoctorDashboard/>}></Route>
@@ -41,9 +51,20 @@ const App = () => {
                 <Route path='addAppoinment' element={<AddAppoinments/>}></Route>
                 <Route path='BookedAppointments' element={<DoctorPatients/>}/>
             </Route>
-            <Route path='/addDoctor' element={<AddDoctor/>}/>
-            <Route path='/addHospitalStaff' element={<AddHospitalStaff/>}/>
-            <Route path='/addHospital' element={<AddHospital/>}/>
+            
+            <Route path='/admin' element={<AdminLayout/>}>
+                <Route path='dashboard' element={<AdminDashboard/>}/>
+                <Route path='addUsers' element={<AddUsers/>}/>
+                <Route path='addDoctor' element={<AddDoctor/>}/>
+                <Route path='addHospitalStaff' element={<AddHospitalStaff/>}/>
+                <Route path='addHospital' element={<AddHospital/>}/>
+                <Route path='allHospitals' element={<AllHospitals/>}/>
+                <Route path='allUsers' element={<AllUsers/>}/>
+                <Route path='allPatients' element={<AllPatients/>}/>
+                <Route path='allDoctors' element={<AllDoctors/>}/>
+                <Route path='allHospitalStaffs' element={<AllHospitalStafs/>}/>
+                <Route path='allHealthCareManagers' element={<AllHealthCareManagers/>}/>
+            </Route>
         </Routes>
       </BrowserRouter>
     </div>

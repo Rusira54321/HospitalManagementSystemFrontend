@@ -32,7 +32,7 @@ const Login = () => {
                 navigate('/Doctor/DoctorDashboard')
         }else if(javascriptObject.roles.includes("ROLE_ADMIN"))
         {
-                navigate('/AdminDashboard')
+                navigate('/admin/dashboard')
         }else if(javascriptObject.roles.includes("ROLE_PATIENT"))
         {
                 navigate('/patient/dashboard')

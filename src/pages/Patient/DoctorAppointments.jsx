@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Search } from "lucide-react"; // ✅ Search icon
+import { Search } from "lucide-react";
+import { loadStripe } from "@stripe/stripe-js";
 
 const statusColors = {
   AVAILABLE: "bg-green-100 text-green-800",
@@ -18,42 +19,61 @@ const DoctorAppointments = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const appointmentsPerPage = 6;
 
- useEffect(() => {
-  const username = localStorage.getItem("username");
+  const StripeKey = import.meta.env.VITE_STRIPE_KEY;
+  const key = import.meta.env.VITE_CURRENCY_CONVERTER;
+  const BASE_URL = `https://v6.exchangerate-api.com/v6/${key}/latest/`;
 
-  const getDoctorAppointments = async () => {
+  const convertCurrency = async (from, to, amount) => {
     try {
-      const res = await axios.get(
-        "http://localhost:9090/api/doctor/getAppointments",
-        {
-          params: { doctorId: doctorID },
-          withCredentials: true,
-        }
-      );
-
-      // ✅ Sort by createTime (latest first)
-      const sortedAppointments = res.data.sort(
-        (a, b) => new Date(b.createTime) - new Date(a.createTime)
-      );
-
-      
-      setDoctorAppointments(sortedAppointments);
-
-      const patient = await axios.get(
-        "http://localhost:9090/api/patient/getPatient",
-        {
-          params: { username },
-          withCredentials: true,
-        }
-      );
-      setPatientId(patient.data.id);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.get(`${BASE_URL}${from}`);
+      const rate = response.data.conversion_rates[to];
+      if (!rate) {
+        console.log(`Exchange rate for ${to} not found.`);
+        return 0;
+      }
+      const convertedAmount = parseFloat((amount * rate).toFixed(2));
+      return convertedAmount;
+    } catch (error) {
+      console.error("Error fetching exchange rate:", error.message);
+      return 0;
     }
   };
-  getDoctorAppointments();
-}, [doctorID]);
 
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+
+    const getDoctorAppointments = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:9090/api/doctor/getAppointments",
+          {
+            params: { doctorId: doctorID },
+            withCredentials: true,
+          }
+        );
+
+        // ✅ Sort by createTime (latest first)
+        const sortedAppointments = res.data.sort(
+          (a, b) => new Date(b.createTime) - new Date(a.createTime)
+        );
+
+        setDoctorAppointments(sortedAppointments);
+
+        const patient = await axios.get(
+          "http://localhost:9090/api/patient/getPatient",
+          {
+            params: { username },
+            withCredentials: true,
+          }
+        );
+        setPatientId(patient.data.id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getDoctorAppointments();
+  }, [doctorID]);
 
   // ✅ Book appointment handler
   const handleBook = async (appointmentId) => {
@@ -76,9 +96,28 @@ const DoctorAppointments = () => {
 
             console.log("Booking successful:", res.data);
             appointment.status = "BOOKED"; // Update locally
-            setDoctorAppointments(appointments); // Refresh UI instantly
+            setDoctorAppointments(appointments);
           } else {
-            // 💳 Stripe integration (future)
+            const stripePromise = loadStripe(StripeKey);
+            const stripe = await stripePromise;
+            const priceByDollars = await convertCurrency(
+              "LKR",
+              "USD",
+              appointment.price
+            );
+            const res = await axios.post(
+              "http://localhost:9090/api/patient/payment/create-checkout-session",
+              {
+                appointmentId: appointmentId,
+                patientID: patientId,
+                amount: priceByDollars,
+                amountInRs: appointment.price,
+              },
+              {
+                withCredentials: true,
+              }
+            );
+            window.location.href = res.data.url;
           }
         }
       }
@@ -87,12 +126,12 @@ const DoctorAppointments = () => {
     }
   };
 
-  // ✅ Filter appointments by date
+  // ✅ FIXED date filtering (works with local timezone)
   const filteredAppointments = doctorAppointments.filter((appointment) => {
     if (!searchDate) return true;
-    const appointmentDate = new Date(appointment.startTime)
-      .toISOString()
-      .split("T")[0];
+    const appointmentDate = new Date(appointment.startTime).toLocaleDateString(
+      "en-CA"
+    ); // keeps format YYYY-MM-DD but in local time
     return appointmentDate === searchDate;
   });
 
@@ -166,16 +205,18 @@ const DoctorAppointments = () => {
                 <p>
                   <strong>Status:</strong>{" "}
                   <span
-                    className={`px-2 py-1 rounded-lg text-sm font-semibold ${statusColors[appointment.status]
-                      }`}
+                    className={`px-2 py-1 rounded-lg text-sm font-semibold ${
+                      statusColors[appointment.status] || "bg-gray-200"
+                    }`}
                   >
                     {appointment.status}
                   </span>
                 </p>
-                {/* 🏥 Room Location */}
                 <p>
                   <strong>Room:</strong>{" "}
-                  {appointment.roomLocation ? appointment.roomLocation : "Not Assigned"}
+                  {appointment.roomLocation
+                    ? appointment.roomLocation
+                    : "Not Assigned"}
                 </p>
               </div>
 
@@ -202,10 +243,11 @@ const DoctorAppointments = () => {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className={`px-4 py-2 rounded-lg text-white ${currentPage === 1
+            className={`px-4 py-2 rounded-lg text-white ${
+              currentPage === 1
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
-              }`}
+            }`}
           >
             Previous
           </button>
@@ -215,10 +257,11 @@ const DoctorAppointments = () => {
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className={`px-4 py-2 rounded-lg text-white ${currentPage === totalPages
+            className={`px-4 py-2 rounded-lg text-white ${
+              currentPage === totalPages
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
-              }`}
+            }`}
           >
             Next
           </button>

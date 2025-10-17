@@ -1,42 +1,92 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUsers, FaUserMd, FaCalendarCheck, FaMoneyCheckAlt } from "react-icons/fa";
+import axios from "axios";
 const AdminDashboard = () => {
+  const navigate = useNavigate()
+  const stats = [
+    { name: "Total Users", value: 120, icon: FaUsers, bg: "bg-blue-50", text: "text-blue-700" },
+    { name: "Doctors", value: 35, icon: FaUserMd, bg: "bg-green-50", text: "text-green-700" },
+    { name: "Appointments", value: 78, icon: FaCalendarCheck, bg: "bg-yellow-50", text: "text-yellow-700" },
+    { name: "Payments", value: 150, icon: FaMoneyCheckAlt, bg: "bg-purple-50", text: "text-purple-700" },
+  ];
+  const logoutUrl = 'http://localhost:9090/api/auth/logout'
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(logoutUrl, {}, { withCredentials: true })
+      navigate('/') // redirect to login page after logout
+    } catch (err) {
+      console.error('Logout failed:', err)
+    }
+  }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-300 to-blue-500 flex flex-col items-center justify-center px-4 py-8">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-2xl">
-        <div className="flex flex-col items-center mb-8">
-          <div className="bg-blue-500 rounded-full p-4 mb-2 shadow-lg">
-            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v4a1 1 0 001 1h3m10-5h3a1 1 0 011 1v4a1 1 0 01-1 1h-3m-10 0v4a1 1 0 001 1h3m10-5h3a1 1 0 011 1v4a1 1 0 01-1 1h-3" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-extrabold text-blue-700 mb-1">Admin Dashboard</h1>
-          <p className="text-gray-500 text-sm text-center">Welcome to MediCore Admin Panel</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <Link to="/addDoctor" className="flex flex-col items-center bg-blue-100 rounded-xl p-6 shadow hover:bg-blue-200 transition cursor-pointer">
-            <svg className="w-8 h-8 text-blue-600 mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m-7-7a7 7 0 1114 0" />
-            </svg>
-            <span className="font-semibold text-blue-700">Add Doctor</span>
-          </Link>
-          <Link to="/addHospitalStaff" className="flex flex-col items-center bg-blue-100 rounded-xl p-6 shadow hover:bg-blue-200 transition cursor-pointer">
-            <svg className="w-8 h-8 text-blue-600 mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 01-8 0m8 0a4 4 0 01-8 0m8 0v4a4 4 0 01-8 0V7" />
-            </svg>
-            <span className="font-semibold text-blue-700">Add Hospital Staff</span>
-          </Link>
-          <Link to="/addHospital" className="flex flex-col items-center bg-blue-100 rounded-xl p-6 shadow hover:bg-blue-200 transition cursor-pointer">
-            <svg className="w-8 h-8 text-blue-600 mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v20m10-10H2" />
-            </svg>
-            <span className="font-semibold text-blue-700">Add Hospital</span>
-          </Link>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 p-8 relative">
+      {/* Logout Button */}
+      <button
+      onClick={handleLogout}
+        className="absolute top-5 right-5 px-4 py-2 bg-red-500 text-white rounded-lg font-semibold 
+        hover:bg-red-600 active:bg-red-700 shadow-md transition"
+      >
+        Logout
+      </button>
+
+      {/* Welcome Section */}
+      <div className="text-center mb-10">
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">Welcome, Admin!</h1>
+        <p className="text-gray-600 text-lg">Manage your hospital system efficiently</p>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <div
+              key={index}
+              className={`flex items-center p-6 rounded-xl shadow-lg ${stat.bg} hover:shadow-2xl transition`}
+            >
+              <div className={`p-4 rounded-full ${stat.text} bg-white/40 mr-4`}>
+                <Icon className="w-8 h-8" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
+                <p className="text-gray-600">{stat.name}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Quick Links */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Link
+          to="/admin/addUsers"
+          className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+        >
+          <p className="font-semibold text-gray-800 text-lg mb-2">Add Users</p>
+        </Link>
+        <Link
+          to="/admin/addHospital"
+          className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+        >
+          <p className="font-semibold text-gray-800 text-lg mb-2">Add Hospital</p>
+        </Link>
+        <Link
+          to="/admin/appointments"
+          className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+        >
+          <p className="font-semibold text-gray-800 text-lg mb-2">Appointments</p>
+        </Link>
+        <Link
+          to="/admin/payments"
+          className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+        >
+          <p className="font-semibold text-gray-800 text-lg mb-2">Payments</p>
+        </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDashboard
+export default AdminDashboard;

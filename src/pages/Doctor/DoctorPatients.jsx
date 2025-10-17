@@ -73,14 +73,13 @@ const DoctorPatients = () => {
     }
   };
 
-  // ✅ Filter by date
-  const filteredAppointments = bookedAppointments.filter((appointment) => {
-    if (!searchDate) return true;
-    const appointmentDate = new Date(appointment.startTime)
-      .toISOString()
-      .split("T")[0];
-    return appointmentDate === searchDate;
-  });
+  // ✅ Filter by date (fixed)
+const filteredAppointments = bookedAppointments.filter((appointment) => {
+  if (!searchDate) return true;
+  const appointmentDate = new Date(appointment.startTime).toLocaleDateString("en-CA");
+  return appointmentDate === searchDate;
+});
+
 
   // ✅ Pagination
   const indexOfLast = currentPage * appointmentsPerPage;
