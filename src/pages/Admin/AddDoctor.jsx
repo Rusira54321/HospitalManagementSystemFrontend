@@ -97,20 +97,22 @@ const AddDoctor = () => {
   },[])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-blue-300 to-blue-500 px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-200 to-pink-200 px-4 py-10">
       <form 
-        className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6 border border-gray-200"
+        className="w-full max-w-md bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 space-y-6 border border-white/20"
         onSubmit={handleSubmit}
       >
         {/* Header */}
         <div className="flex flex-col items-center mb-2">
-          <div className="bg-blue-100 rounded-full p-3 mb-3 shadow-sm">
-            <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v20m10-10H2" />
+          <div className="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-4 mb-4 shadow-lg transform hover:scale-105 transition-all duration-300">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-blue-700 mb-1 text-center">Add Doctor</h1>
-          <p className="text-gray-500 text-sm text-center">Enter doctor details below</p>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2 text-center">
+            Add New Doctor
+          </h1>
+          <p className="text-gray-600 text-sm text-center">Complete the form below to register a new doctor</p>
         </div>
 
         {/* Username */}
@@ -121,59 +123,69 @@ const AddDoctor = () => {
             value={username} 
             onChange={(e)=>setUsername(e.target.value)} 
             required 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400
+            hover:bg-white/70"
             placeholder="Enter username"
           />
         </div>
 
         {/* Password */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
           <input 
             type='password' 
             value={password} 
             onChange={(e)=>setPassword(e.target.value)} 
             required 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400
+            hover:bg-white/70"
             placeholder="Enter password"
           />
         </div>
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
           <input 
             type='email' 
             value={email} 
             onChange={(e)=>setEmail(e.target.value)} 
             required 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400
+            hover:bg-white/70"
             placeholder="Enter email"
           />
         </div>
 
         {/* First Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
           <input 
             type='text' 
             value={firstName} 
             onChange={(e)=>setFirstName(e.target.value)} 
             required 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400
+            hover:bg-white/70"
             placeholder="Enter first name"
           />
         </div>
 
         {/* Last Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
           <input 
             type='text' 
             value={lastName} 
             onChange={(e)=>setLastName(e.target.value)} 
             required 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400
+            hover:bg-white/70"
             placeholder="Enter last name"
           />
         </div>
@@ -185,7 +197,15 @@ const AddDoctor = () => {
             onChange={(e)=>setSpecialization(e.target.value)} 
             value={specialization} 
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white transition"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200
+            hover:bg-white/70 cursor-pointer appearance-none"
+            style={{ 
+              backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 1rem center',
+              backgroundSize: '1em'
+            }}
           >
             <option value="">Select Doctor Specialization</option>
             <option value="General Doctor">General Doctor</option>
@@ -222,7 +242,15 @@ const AddDoctor = () => {
             value={hospitalId} 
             onChange={(e)=>setHospitalId(e.target.value)} 
             required 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white transition"
+            className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 
+            focus:ring-indigo-500 focus:border-transparent transition-all duration-200
+            hover:bg-white/70 cursor-pointer appearance-none"
+            style={{ 
+              backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 1rem center',
+              backgroundSize: '1em'
+            }}
           >
             <option value="">Choose hospital</option>
             {hospitals && hospitals.map((hospital,index)=>(
@@ -261,9 +289,14 @@ const AddDoctor = () => {
         {/* Submit Button */}
         <button 
           type='submit' 
-          className="w-full bg-blue-600 text-white font-semibold py-2.5 rounded-lg shadow hover:bg-blue-700 transition-all duration-200"
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-xl 
+          font-semibold hover:from-indigo-700 hover:to-purple-700 transform hover:scale-[1.02] 
+          transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
         >
-          Submit
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Register Doctor
         </button>
       </form>
     </div>

@@ -28,6 +28,7 @@ import AllPatients from './pages/Admin/AllPatients'
 import AllDoctors from './pages/Admin/AllDoctors'
 import AllHospitalStafs from './pages/Admin/AllHospitalStafs'
 import AllHealthCareManagers from './pages/Admin/AllHealthCareManagers'
+import PatientInformation from './pages/Doctor/PatientInformation'
 const App = () => {
   return (
     <div>
@@ -50,6 +51,7 @@ const App = () => {
                 <Route path='Appoinments' element={<DoctorAppoinment/>}></Route>
                 <Route path='addAppoinment' element={<AddAppoinments/>}></Route>
                 <Route path='BookedAppointments' element={<DoctorPatients/>}/>
+                <Route path='patientInformation/:id' element={<PatientInformation/>}/>
             </Route>
             
             <Route path='/admin' element={<AdminLayout/>}>

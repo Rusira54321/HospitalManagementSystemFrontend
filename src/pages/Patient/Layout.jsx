@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 
 const Layout = () => {
   return (
-    <div className="flex bg-gray-100 min-h-full"> {/* min-h-full instead of min-h-screen */}
+    <div className="flex bg-gray-100 min-h-screen"> {/* min-h-full instead of min-h-screen */}
       
       {/* Sidebar */}
       <div className="flex flex-col">  {/* flex-col ensures sidebar items stack */}

@@ -72,39 +72,74 @@ const AddAppointments = () => {
     }
 
     return (
-        <div className='min-h-screen bg-gradient-to-br from-blue-100 via-blue-300 to-blue-500 flex flex-col items-center justify-center px-4 py-8'>
-            <div className='bg-white rounded-2xl shadow-lg p-8 w-full max-w-md'>
-                <h2 className='text-2xl font-bold mb-6 text-center'>Add Appointment</h2>
-                {message && <p className='mb-4 text-center text-red-500'>{message}</p>}
-                <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                    <div>
-                        <label className='block font-semibold mb-1'>Doctor Name:</label>
-                        <input type="text" value={doctorDetails.firstName+' '+doctorDetails.lastName||''} disabled
-                            className='w-full border rounded px-3 py-2 bg-gray-100' />
+        <div className='min-h-screen bg-gradient-to-br from-indigo-100 via-purple-200 to-pink-300 flex flex-col items-center justify-center px-4 py-8'>
+            <div className='backdrop-blur-md bg-white/80 rounded-3xl shadow-2xl p-8 w-full max-w-md border border-white/20 transition-all duration-300 hover:shadow-xl'>
+                <h2 className='text-3xl font-bold mb-8 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text'>Add Appointment</h2>
+                {message && (
+                    <div className={`mb-6 p-4 rounded-lg ${message.includes('successfully') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'} transform transition-all duration-300 animate-fade-in`}>
+                        <p className='text-center font-medium'>{message}</p>
                     </div>
-                    <div>
-                        <label className='block font-semibold mb-1'>Start Time:</label>
-                        <input type="datetime-local" value={startTime} onChange={(e) => setStartTime(e.target.value)}
-                            className='w-full border rounded px-3 py-2' required />
+                )}
+                <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
+                    <div className='space-y-2'>
+                        <label className='block font-semibold text-gray-700'>Doctor Name</label>
+                        <input 
+                            type="text" 
+                            value={doctorDetails.firstName+' '+doctorDetails.lastName||''} 
+                            disabled
+                            className='w-full border-2 border-gray-200 rounded-lg px-4 py-3 bg-gray-50 focus:outline-none focus:border-blue-500 transition-colors disabled:opacity-75' 
+                        />
                     </div>
-                    <div>
-                        <label className='block font-semibold mb-1'>End Time:</label>
-                        <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)}
-                            className='w-full border rounded px-3 py-2' required />
+                    <div className='space-y-2'>
+                        <label className='block font-semibold text-gray-700'>Start Time</label>
+                        <input 
+                            type="datetime-local" 
+                            value={startTime} 
+                            onChange={(e) => setStartTime(e.target.value)}
+                            className='w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all' 
+                            required 
+                        />
                     </div>
-                     <div>
-                        <label className='block font-semibold mb-1'>Room Location:</label>
-                        <input type="text" value={roomLocation} onChange={(e) => setRoomLocation(e.target.value)}
-                            className='w-full border rounded px-3 py-2' required />
+                    <div className='space-y-2'>
+                        <label className='block font-semibold text-gray-700'>End Time</label>
+                        <input 
+                            type="datetime-local" 
+                            value={endTime} 
+                            onChange={(e) => setEndTime(e.target.value)}
+                            className='w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all' 
+                            required 
+                        />
+                    </div>
+                    <div className='space-y-2'>
+                        <label className='block font-semibold text-gray-700'>Room Location</label>
+                        <input 
+                            type="text" 
+                            value={roomLocation} 
+                            onChange={(e) => setRoomLocation(e.target.value)}
+                            className='w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all' 
+                            required 
+                            placeholder="Enter room location"
+                        />
                     </div>
                     {payorNot && (
-                        <div>
-                            <label className='block font-semibold mb-1'>Price:</label>
-                            <input type="number" value={price} onChange={(e) => setPrice(e.target.value)}
-                                className='w-full border rounded px-3 py-2' placeholder="Enter price" />
+                        <div className='space-y-2'>
+                            <label className='block font-semibold text-gray-700'>Price</label>
+                            <div className='relative'>
+                                <span className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500'>$</span>
+                                <input 
+                                    type="number" 
+                                    value={price} 
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    className='w-full border-2 border-gray-200 rounded-lg px-4 py-3 pl-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all' 
+                                    placeholder="Enter price" 
+                                />
+                            </div>
                         </div>
                     )}
-                    <button type='submit' className='bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition'>
+                    <button 
+                        type='submit' 
+                        className='mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-[1.02] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2'
+                    >
                         Add Appointment
                     </button>
                 </form>

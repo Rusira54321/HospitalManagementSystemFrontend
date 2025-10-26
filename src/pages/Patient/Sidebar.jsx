@@ -22,7 +22,7 @@ const Sidebar = () => {
 
 
   return (
-    <div className="flex flex-col min-h-screen bg-white shadow-lg w-64">
+    <div className="flex flex-col h-full bg-white shadow-lg w-64">
       {/* Logo / Header */}
       <div className="flex flex-col items-center justify-center h-28 border-b border-gray-200 px-4">
         <h1 className="text-xl font-bold text-blue-600 mb-1">Patient Portal</h1>
