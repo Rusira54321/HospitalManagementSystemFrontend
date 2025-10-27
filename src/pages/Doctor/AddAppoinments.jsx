@@ -125,7 +125,7 @@ const AddAppointments = () => {
                         <div className='space-y-2'>
                             <label className='block font-semibold text-gray-700'>Price</label>
                             <div className='relative'>
-                                <span className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500'>$</span>
+                                <span className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 mr-2'>Rs</span>
                                 <input 
                                     type="number" 
                                     value={price} 
