@@ -146,7 +146,7 @@ const PatientInformation = () => {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div className="bg-red-50 rounded-xl p-6 border border-red-100">
                       <h3 className="text-lg font-semibold text-red-800 mb-4 flex items-center">
-                        <span className="mr-2">⚠️</span> Allergies
+                        <span className="mr-2">⚠️</span> Medical Conditions
                       </h3>
                       {medicalRecord.allergies?.length > 0 ? (
                         <ul className="space-y-2">

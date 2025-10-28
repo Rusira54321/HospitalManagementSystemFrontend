@@ -45,7 +45,7 @@ const DoctorAppointments = () => {
     const getDoctorAppointments = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:9090/api/doctor/getAppointments",
+          "http://localhost:9090/api/patient/getAvailableAppointments",
           {
             params: { doctorId: doctorID },
             withCredentials: true,

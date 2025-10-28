@@ -36,7 +36,7 @@ const Login = () => {
                         }else if(javascriptObject.roles.includes("ROLE_PATIENT")){
                                 navigate('/patient/dashboard')
                         }else if(javascriptObject.roles.includes("ROLE_HEALTHCAREMANAGER")){
-                                navigate('/HealthCareManagerDashboard')
+                                navigate('/healthCareManager/dashboard')
                         }else if(javascriptObject.roles.includes("ROLE_HOSPITALSTAFF")){
                                 navigate('/HospitalStaffDashboard')
                         }

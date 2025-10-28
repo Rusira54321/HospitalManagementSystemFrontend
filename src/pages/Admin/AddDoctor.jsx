@@ -208,30 +208,31 @@ const AddDoctor = () => {
             }}
           >
             <option value="">Select Doctor Specialization</option>
-            <option value="General Doctor">General Doctor</option>
-            <option value="Heart Doctor">Heart Doctor</option>
-            <option value="Brain and Nerve Doctor">Brain and Nerve Doctor</option>
-            <option value="Bone and Joint Doctor">Bone and Joint Doctor</option>
-            <option value="Child Doctor">Child Doctor</option>
-            <option value="Women’s Health Doctor">Women’s Health Doctor</option>
-            <option value="Skin Doctor">Skin Doctor</option>
-            <option value="Mental Health Doctor">Mental Health Doctor</option>
-            <option value="Ear, Nose, and Throat Doctor">Ear, Nose, and Throat Doctor</option>
-            <option value="Eye Doctor">Eye Doctor</option>
-            <option value="Teeth Doctor">Teeth Doctor</option>
-            <option value="Kidney Doctor">Kidney Doctor</option>
-            <option value="Stomach and Digestive Doctor">Stomach and Digestive Doctor</option>
-            <option value="Lung Doctor">Lung Doctor</option>
-            <option value="Cancer Doctor">Cancer Doctor</option>
-            <option value="Diabetes and Hormone Doctor">Diabetes and Hormone Doctor</option>
-            <option value="Blood Doctor">Blood Doctor</option>
-            <option value="X-ray and Scan Doctor">X-ray and Scan Doctor</option>
-            <option value="Surgery Doctor">Surgery Doctor</option>
-            <option value="Pain and Anesthesia Doctor">Pain and Anesthesia Doctor</option>
-            <option value="Emergency Doctor">Emergency Doctor</option>
-            <option value="Elderly Care Doctor">Elderly Care Doctor</option>
-            <option value="Allergy Doctor">Allergy Doctor</option>
-            <option value="Rehabilitation Doctor">Rehabilitation Doctor</option>
+            <option value="General Physician">General Physician</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Neurologist">Neurologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+            <option value="Gynecologist">Gynecologist</option>
+            <option value="Obstetrician">Obstetrician</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Psychiatrist">Psychiatrist</option>
+            <option value="Ophthalmologist">Ophthalmologist</option>
+            <option value="ENT Specialist">ENT Specialist</option>
+            <option value="Urologist">Urologist</option>
+            <option value="Gastroenterologist">Gastroenterologist</option>
+            <option value="Pulmonologist">Pulmonologist</option>
+            <option value="Endocrinologist">Endocrinologist</option>
+            <option value="Oncologist">Oncologist</option>
+            <option value="Radiologist">Radiologist</option>
+            <option value="Pathologist">Pathologist</option>
+            <option value="Nephrologist">Nephrologist</option>
+            <option value="Anesthesiologist">Anesthesiologist</option>
+            <option value="Emergency Medicine Specialist">Emergency Medicine Specialist</option>
+            <option value="Rheumatologist">Rheumatologist</option>
+            <option value="Dentist">Dentist</option>
+            <option value="Plastic Surgeon">Plastic Surgeon</option>
+            <option value="Infectious Disease Specialist">Infectious Disease Specialist</option>
           </select>
         </div>
 

@@ -29,6 +29,9 @@ import AllDoctors from './pages/Admin/AllDoctors'
 import AllHospitalStafs from './pages/Admin/AllHospitalStafs'
 import AllHealthCareManagers from './pages/Admin/AllHealthCareManagers'
 import PatientInformation from './pages/Doctor/PatientInformation'
+import HealthCareLayout from './pages/HealthCareManager/HealthCareLayout'
+import AppointmentAdd from './pages/HealthCareManager/AppointmentAdd'
+import AllSecretary from './pages/Doctor/AllSecretary'
 const App = () => {
   return (
     <div>
@@ -37,7 +40,6 @@ const App = () => {
             <Route path='/' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
-            <Route path='/HealthCareManagerDashboard' element={<HealthCareManager/>}/>
             <Route path='/HospitalStaffDashboard' element={<HospitalStaff/>}/>
             <Route path='/patient' element={<Layout/>}>
                 <Route path='dashboard' element={<Patient/>}></Route>
@@ -52,8 +54,12 @@ const App = () => {
                 <Route path='addAppoinment' element={<AddAppoinments/>}></Route>
                 <Route path='BookedAppointments' element={<DoctorPatients/>}/>
                 <Route path='patientInformation/:id' element={<PatientInformation/>}/>
+                <Route path='allSecretary' element={<AllSecretary/>}/>
             </Route>
-            
+            <Route path='/healthCareManager' element={<HealthCareLayout/>}>
+                <Route path='dashboard' element={<HealthCareManager/>}/>
+                <Route path='appointmentAdd' element={<AppointmentAdd/>}/>
+            </Route>
             <Route path='/admin' element={<AdminLayout/>}>
                 <Route path='dashboard' element={<AdminDashboard/>}/>
                 <Route path='addUsers' element={<AddUsers/>}/>

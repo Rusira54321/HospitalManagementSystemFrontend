@@ -16,11 +16,31 @@ const Patient = () => {
   const { hospitalName, doctorSpecialization, setDoctorSpecialization, setHospitalName } = useContext(GlobalContext)
 
   const doctorSpecializations = [
-    "General Doctor", "Heart Doctor", "Brain and Nerve Doctor", "Bone and Joint Doctor",
-    "Child Doctor", "Women’s Health Doctor", "Skin Doctor", "Mental Health Doctor", "Ear, Nose, and Throat Doctor",
-    "Eye Doctor", "Teeth Doctor", "Kidney Doctor", "Stomach and Digestive Doctor", "Lung Doctor", "Cancer Doctor",
-    "Diabetes and Hormone Doctor", "Blood Doctor", "X-ray and Scan Doctor", "Surgery Doctor", "Pain and Anesthesia Doctor",
-    "Emergency Doctor", "Elderly Care Doctor", "Allergy Doctor", "Rehabilitation Doctor"
+    "General Physician",
+    "Cardiologist",
+    "Neurologist",
+    "Pediatrician",
+    "Orthopedic Surgeon",
+    "Gynecologist",
+    "Obstetrician",
+    "Dermatologist",
+    "Psychiatrist",
+    "Ophthalmologist",
+    "ENT Specialist",
+    "Urologist",
+    "Gastroenterologist",
+    "Pulmonologist",
+    "Endocrinologist",
+    "Oncologist",
+    "Radiologist",
+    "Pathologist",
+    "Nephrologist",
+    "Anesthesiologist",
+    "Emergency Medicine Specialist",
+    "Rheumatologist",
+    "Dentist",
+    "Plastic Surgeon",
+    "Infectious Disease Specialist"
   ]
 
   useEffect(() => {

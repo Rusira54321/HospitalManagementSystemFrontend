@@ -61,6 +61,7 @@ const AddAppointments = () => {
             })
             setMessage("Appointment added successfully!")
             // Reset form
+            setRoomLocation('')
             setPatientName('')
             setStartTime('')
             setEndTime('')

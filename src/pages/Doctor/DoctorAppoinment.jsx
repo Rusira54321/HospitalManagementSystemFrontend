@@ -13,7 +13,7 @@ const DoctorAppointment = () => {
   const [search, setSearch] = useState("");
   const [searchDate, setSearchDate] = useState(""); // ✅ Date search
   const [currentPage, setCurrentPage] = useState(1);
-  const [appointmentsPerPage] = useState(5);
+  const [appointmentsPerPage] = useState(6);
 
   useEffect(() => {
     const username = localStorage.getItem("username");

@@ -300,14 +300,14 @@ const DoctorPatients = () => {
 
               <div className="space-y-6">
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-3">Allergies</label>
+                  <label className="block text-gray-700 font-semibold mb-3">Medical Conditions</label>
                   <div className="space-y-3">
                     {allergies.map((allergy, index) => (
                       <input
                         required
                         key={index}
                         type="text"
-                        placeholder="Enter allergy"
+                        placeholder="Enter Medical Condition"
                         value={allergy}
                         onChange={(e) => {
                           const newAllergies = [...allergies];
@@ -323,7 +323,7 @@ const DoctorPatients = () => {
                     onClick={() => setAllergies([...allergies, ""])}
                     className="mt-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
                   >
-                    + Add Another Allergy
+                    + Add Another Medical Condition
                   </button>
                 </div>
 
