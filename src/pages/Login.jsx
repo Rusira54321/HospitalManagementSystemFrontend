@@ -38,7 +38,7 @@ const Login = () => {
                         }else if(javascriptObject.roles.includes("ROLE_HEALTHCAREMANAGER")){
                                 navigate('/healthCareManager/dashboard')
                         }else if(javascriptObject.roles.includes("ROLE_HOSPITALSTAFF")){
-                                navigate('/HospitalStaffDashboard')
+                                navigate('/healthCareStaff/dashboard')
                         }
                 }catch(err){
                         seterror(err?.response?.data?.error || 'Login failed')

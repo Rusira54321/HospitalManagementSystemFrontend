@@ -6,7 +6,6 @@ import Login from './pages/Login'
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import DoctorDashboard from './pages/Doctor/DoctorDashboard'
 import HealthCareManager from './pages/HealthCareManager/HealthCareManager'
-import HospitalStaff from './pages/HospitalStaff/HospitalStaff'
 import Patient from './pages/Patient/Patient'
 import AddDoctor from './pages/Admin/AddDoctor'
 import AddHospitalStaff from './pages/Admin/AddHospitalStaff'
@@ -32,6 +31,9 @@ import PatientInformation from './pages/Doctor/PatientInformation'
 import HealthCareLayout from './pages/HealthCareManager/HealthCareLayout'
 import AppointmentAdd from './pages/HealthCareManager/AppointmentAdd'
 import AllSecretary from './pages/Doctor/AllSecretary'
+import HospitalStaffDashboard from './pages/HospitalStaff/HospitalStaffDashboard'
+import HospitalStaffLayout from './pages/HospitalStaff/HospitalStaffLayout'
+import AddAppointment from './pages/HospitalStaff/AddAppointment'
 const App = () => {
   return (
     <div>
@@ -39,8 +41,6 @@ const App = () => {
         <Routes>
             <Route path='/' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
-            <Route path='/HospitalStaffDashboard' element={<HospitalStaff/>}/>
             <Route path='/patient' element={<Layout/>}>
                 <Route path='dashboard' element={<Patient/>}></Route>
                 <Route path='doctorDetails' element={<DoctorsDetails/>}/>
@@ -72,6 +72,10 @@ const App = () => {
                 <Route path='allDoctors' element={<AllDoctors/>}/>
                 <Route path='allHospitalStaffs' element={<AllHospitalStafs/>}/>
                 <Route path='allHealthCareManagers' element={<AllHealthCareManagers/>}/>
+            </Route>
+            <Route path='/healthCareStaff' element={<HospitalStaffLayout/>}>
+                <Route path='dashboard' element={<HospitalStaffDashboard/>}/>
+                <Route path='addappointment' element={<AddAppointment/>}/>
             </Route>
         </Routes>
       </BrowserRouter>
