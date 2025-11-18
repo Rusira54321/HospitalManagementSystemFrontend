@@ -23,7 +23,7 @@ const HospitalStaffSideBar = () => {
           <div className="flex items-center justify-between h-20 px-5 border-b border-gray-200">
             {isOpen && (
               <h1 className="text-xl font-bold text-blue-600 tracking-wide">
-                Doctor Portal
+                Hospital Staff Portal
               </h1>
             )}
             <button
@@ -38,7 +38,7 @@ const HospitalStaffSideBar = () => {
           {isOpen && (
             <div className="px-5 py-3 text-gray-600 border-b border-gray-100">
               <p className="text-sm">
-                👋 Welcome, <span className="font-semibold text-blue-700">Dr. John</span>
+                👋 Welcome, User
               </p>
             </div>
           )}

@@ -12,6 +12,17 @@ const AddAppointment = () => {
   const [roomLocation, setRoomLocation] = useState('');
   const [message, setMessage] = useState('');
 
+  function formatDateForInput(date) {
+  const pad = (num) => num.toString().padStart(2, '0');
+
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1); // months 0-11
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
   useEffect(() => {
     const userName = localStorage.getItem('username');
     const getDoctors = async () => {
@@ -52,12 +63,29 @@ const AddAppointment = () => {
       return;
     }
 
+    const startTimeInDateFormat = new Date(startTime)
+    const endTimeInDateFormat = new Date(endTime)
+    if(startTimeInDateFormat >= endTimeInDateFormat){
+      setMessage('End time must be after start time');
+      return;
+    }
+    if(startTimeInDateFormat<=new Date())
+    {
+      setMessage('Start time must be in the future');
+      return;
+    }
+    const differenceInMinutes = (endTimeInDateFormat - startTimeInDateFormat) / (1000 * 60);
+    if(differenceInMinutes>45)
+      {
+        setMessage('Appointment duration cannot exceed 45 minutes');
+        return;
+      } 
     const appointment = {
       startTime,
       endTime,
       roomLocation,
       status: 'AVAILABLE',
-      price: payorNot ? parseFloat(price) || 0 : 0,
+      price: payorNot ? parseFloat(1000) || 0 : 0,
       doctor: { id: doctorId },
     };
 
@@ -122,7 +150,14 @@ const AddAppointment = () => {
             <input
               type="datetime-local"
               value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
+              onChange={(e) =>{
+                                 const start = e.target.value;
+                                 setStartTime(start);
+                                 const startDate = new Date(start);
+                                 const endDate = new Date(startDate.getTime() + 45 * 60 * 1000);
+                                 const formattedEnd = formatDateForInput(endDate)
+                                 setEndTime(formattedEnd);
+                                }}
               className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all"
               required
             />
@@ -134,7 +169,7 @@ const AddAppointment = () => {
             <input
               type="datetime-local"
               value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
+              readOnly
               className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all"
               required
             />
@@ -161,8 +196,7 @@ const AddAppointment = () => {
                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Rs</span>
                 <input
                   type="number"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  value={1000}
                   placeholder="Enter price"
                   className="w-full px-4 py-3 pl-12 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all"
                 />

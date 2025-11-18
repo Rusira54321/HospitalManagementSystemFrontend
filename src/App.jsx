@@ -5,7 +5,6 @@ import Login from './pages/Login'
 
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import DoctorDashboard from './pages/Doctor/DoctorDashboard'
-import HealthCareManager from './pages/HealthCareManager/HealthCareManager'
 import Patient from './pages/Patient/Patient'
 import AddDoctor from './pages/Admin/AddDoctor'
 import AddHospitalStaff from './pages/Admin/AddHospitalStaff'
@@ -34,6 +33,7 @@ import AllSecretary from './pages/Doctor/AllSecretary'
 import HospitalStaffDashboard from './pages/HospitalStaff/HospitalStaffDashboard'
 import HospitalStaffLayout from './pages/HospitalStaff/HospitalStaffLayout'
 import AddAppointment from './pages/HospitalStaff/AddAppointment'
+import PatientReport from './pages/HealthCareManager/PatientReport'
 const App = () => {
   return (
     <div>
@@ -57,7 +57,7 @@ const App = () => {
                 <Route path='allSecretary' element={<AllSecretary/>}/>
             </Route>
             <Route path='/healthCareManager' element={<HealthCareLayout/>}>
-                <Route path='dashboard' element={<HealthCareManager/>}/>
+                <Route path='createReport' element={<PatientReport/>}/>
                 <Route path='appointmentAdd' element={<AppointmentAdd/>}/>
             </Route>
             <Route path='/admin' element={<AdminLayout/>}>

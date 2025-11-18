@@ -11,9 +11,9 @@ import {
 
 const HealthCareSidebar = () => {
   const location = useLocation();
-
+  
   const menuItems = [
-    { name: "Dashboard", icon: FaTachometerAlt, path: "/healthCareManager/dashboard" }
+    { name: "Patient visits", icon: FaTachometerAlt, path: "/healthCareManager/createReport" }
   ];
 
   return (
