@@ -2,7 +2,6 @@ import React from 'react'
 import {BrowserRouter,Routes,Route, UNSAFE_AwaitContextProvider} from "react-router-dom"
 import Register from './pages/Register'
 import Login from './pages/Login'
-
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import DoctorDashboard from './pages/Doctor/DoctorDashboard'
 import Patient from './pages/Patient/Patient'
@@ -34,13 +33,21 @@ import HospitalStaffDashboard from './pages/HospitalStaff/HospitalStaffDashboard
 import HospitalStaffLayout from './pages/HospitalStaff/HospitalStaffLayout'
 import AddAppointment from './pages/HospitalStaff/AddAppointment'
 import PatientReport from './pages/HealthCareManager/PatientReport'
+import HomeLayout from './pages/Home/HomeLayout'
+import Home from './pages/Home/Home'
+import UserGuide from './pages/Home/UserGuide'
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
+            
+            <Route path='/' element={<HomeLayout/>}>
+              <Route index element={<Home/>}/>
+              <Route path='login' element={<Login/>}/>
+              <Route path='register' element={<Register/>}/>
+              <Route path='userGuide' element={<UserGuide/>}/>
+            </Route>
             <Route path='/patient' element={<Layout/>}>
                 <Route path='dashboard' element={<Patient/>}></Route>
                 <Route path='doctorDetails' element={<DoctorsDetails/>}/>
