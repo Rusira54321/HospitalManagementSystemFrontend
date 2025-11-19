@@ -36,6 +36,9 @@ import PatientReport from './pages/HealthCareManager/PatientReport'
 import HomeLayout from './pages/Home/HomeLayout'
 import Home from './pages/Home/Home'
 import UserGuide from './pages/Home/UserGuide'
+import MyHealthRecords from './pages/Patient/MyHealthRecords'
+import Doctors from './pages/HospitalStaff/Doctors'
+import AppointmentsDoctor from './pages/HospitalStaff/AppointmentsDoctor'
 const App = () => {
   return (
     <div>
@@ -50,6 +53,7 @@ const App = () => {
             </Route>
             <Route path='/patient' element={<Layout/>}>
                 <Route path='dashboard' element={<Patient/>}></Route>
+                <Route path='healthRecords' element={<MyHealthRecords/>}/>
                 <Route path='doctorDetails' element={<DoctorsDetails/>}/>
                 <Route path='appointment/:doctorID' element={<DoctorAppointments/>}/>
                 <Route path='patientAppointments' element={<PatientAppointments/>}/>
@@ -82,6 +86,8 @@ const App = () => {
             </Route>
             <Route path='/healthCareStaff' element={<HospitalStaffLayout/>}>
                 <Route path='dashboard' element={<HospitalStaffDashboard/>}/>
+                <Route path='doctorAppointments/:id' element={<AppointmentsDoctor/>}/> 
+                <Route path='doctors' element={<Doctors/>}/>
                 <Route path='addappointment' element={<AddAppointment/>}/>
             </Route>
         </Routes>

@@ -14,9 +14,8 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Dashboard", icon: FaTachometerAlt, path: "/patient/dashboard" },
-    { name: "My Health Records", icon: FaNotesMedical, path: "/patient/records" },
-    { name: "Appointments", icon: FaCalendarCheck, path: "/patient/patientAppointments" },
-    { name: "Payments", icon: FaMoneyCheckAlt, path: "/patient/payments" },
+    { name: "My Health Records", icon: FaNotesMedical, path: "/patient/healthRecords" },
+    { name: "Appointments", icon: FaCalendarCheck, path: "/patient/patientAppointments" }
   ];
 
 
