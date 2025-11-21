@@ -20,7 +20,7 @@ const AdminSideBar = () => {
     { name: "Add Hospitals", icon: FaHospital, path: "/admin/addHospital" },
     { name: "All Users", icon: FaUsers, path: "/admin/allUsers" },
     { name: "All Hospitals", icon: FaBuilding, path: "/admin/allHospitals" },
-    { name: "Reports", icon: FaFileAlt, path: "/admin/reports" },
+
   ];
 
   return (

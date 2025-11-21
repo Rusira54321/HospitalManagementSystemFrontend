@@ -20,7 +20,7 @@ const DoctorSidebar = () => {
     { name: "My Patients", icon: FaUserInjured, path: "/Doctor/BookedAppointments" },
     { name: "Appointments", icon: FaCalendarCheck, path: "/Doctor/Appoinments" },
     { name: "Add Secretary", icon: FaUserPlus, path: "/Doctor/allSecretary" },
-    { name: "Payments", icon: FaMoneyCheckAlt, path: "/Doctor/payments" },
+    
   ];
 
   return (
